@@ -1,0 +1,41 @@
+Note: This is in hard category as it was present in striver dsa sheet hard filter.
+
+Question:
+Given an integer numRows, return the first numRows of Pascal's triangle.
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+Example 1:
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+Example 2:
+Input: numRows = 1
+Output: [[1]]
+
+Constraints:
+1 <= numRows <= 30
+
+Solution:
+class Solution {
+    public static List<Integer> generateRow(int row){
+        long ans = 1;
+        List<Integer> ansRow = new ArrayList<>();
+        ansRow.add(1);
+
+        for(int col = 1; col<row; col++){
+            ans = ans * (row-col);
+            ans = ans/col;
+            ansRow.add((int)ans);
+        }
+
+        return ansRow;
+    }
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascalTriangle = new ArrayList<>();
+
+        for(int row = 1; row<=numRows; row++){
+            pascalTriangle.add(generateRow(row));
+        }
+        return pascalTriangle;
+    }
+}
