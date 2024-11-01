@@ -1,0 +1,42 @@
+Question:
+You are given an arr of length infinite i.e you don't know the exact length of array.
+find the target index of in the infinite sorted array. If not found return -1.
+
+Solution:
+public class InfiniteArray {
+  static int findAns(int[] arr, int target){
+    int start = 0;
+    int end = 1;
+    int index = -1;
+    
+    while(target > arr[end]){
+      int newStart = end+1;
+      end = end+(end-start+1)*2;
+      start = newStart;
+      System.out.println("loop end " + end);
+    }
+    
+    System.out.println("end" + end);
+    
+    index = binarySearch(arr, start, end, target);
+    return index;
+  }
+  public static int binarySearch(int[] arr, int low, int high, int target){
+    if(low>high) return -1;
+    int mid = (low+high)/2;
+    if(arr[mid] == target){
+      return mid;
+    }else if(target > arr[mid]){
+      return binarySearch(arr, mid+1, high, target);
+    }else {
+      return binarySearch(arr, low, mid - 1, target);
+    }
+  }
+  
+  public static void main(String[] args){
+    int[] a = {3, 4, 6, 7, 9, 12, 16, 17};
+    int target = 12;
+    int index = findAns(a, target);
+    System.out.println("index" + index);
+  }
+}
