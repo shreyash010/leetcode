@@ -59,3 +59,82 @@ class Solution {
         return sb.toString();
     }
 }
+
+
+
+***********************************************************************************
+
+Algorithm Used
+This code uses the Bucket Sort algorithm with additional array manipulations. Here's a breakdown:
+
+Frequency Counting:
+
+Use an array (count) of size 128 (ASCII range) to count the frequency of each character.
+Bucket Sort:
+
+Create an array of lists (buckets) where the index represents the frequency.
+Place characters in their respective "buckets" based on their frequency.
+Reconstruct the String:
+
+Iterate from the highest frequency bucket to the lowest.
+For each character in a bucket, append it to the result n times (its frequency).
+Steps
+Count Frequency:
+
+Traverse the string and count each character's frequency.
+Example: For "tree", count['t'] = 1, count['r'] = 1, count['e'] = 2.
+Bucket Formation:
+
+Place characters into buckets based on their frequency.
+Example: For "tree", buckets[1] = ['t', 'r'], buckets[2] = ['e'].
+Build Result:
+
+Traverse buckets from highest frequency to lowest.
+Append each character from a bucket to the result, repeating it freq times.
+Edge Cases
+Empty String:
+
+Returns "" as there are no characters to sort.
+String with Same Characters:
+
+Example: "aaaa".
+All characters have the same frequency, and the output remains the same.
+String with Unique Characters:
+
+Example: "abcd".
+All characters have frequency 1, so their order remains unchanged.
+Time Complexity
+Counting Frequencies: 
+O(n) (Iterate over the string).
+Bucket Fill: 
+O(k), where 
+k is the range of characters (constant for ASCII).
+Constructing Result: 
+O(n) (Appending characters from buckets).
+Overall: 
+O(n) (since 𝑘 is constant for ASCII).
+
+Space Complexity
+Frequency array: 
+𝑂(128) (fixed size for ASCII).
+Bucket array: 
+𝑂(𝑛) (at most n buckets with characters).
+Overall: 
+𝑂(𝑛)
+
+=========================================================================
+
+Short Note
+Concept: Use bucket sort to group characters by frequency, then iterate buckets in descending order of frequency to reconstruct the string.
+Key Points:
+Count frequencies.
+Bucket characters by frequency.
+Build the result from highest to lowest frequency.
+Edge Cases: Empty string, all unique characters, and all same characters.
+Problem Concept in Short
+To solve problems where elements need to be grouped by frequency, use:
+
+Frequency counting.
+Buckets (or similar data structures) to group by frequency.
+Result reconstruction from sorted groups.
+This approach is efficient when the frequency range is small and manageable.
